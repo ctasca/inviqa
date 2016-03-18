@@ -7,11 +7,15 @@ class Colors:
         def get(self, text):
             if re.match(r'^\>\>\>', text):
                 return cyan(text)
+            if re.match(r'^\*\*\s', text):
+                return white(text)
             if re.match(r'^\*\*\*', text):
                 return yellow(text)
             if re.match(r'^\[\d{1,}\]', text):
                 return yellow(text)
             if re.match(r'^\!\!\!', text):
                 return red(text)
+            if re.match(r'^\!\!\s', text):
+                return blue(text)
             if re.match(r'^\.:\~', text):
                 return green(text)
