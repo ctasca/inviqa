@@ -7,7 +7,7 @@ from os.path import splitext
 
 c = Colors()
 
-class Runner:
+class CliTool:
     def __init__(self):
         self.profile = False
         self.path = False
@@ -41,9 +41,9 @@ class Runner:
         self.absolute_fpath = os.path.abspath(fpath)
         exclude = set(self.exclude_walk_dirs)
 
-        
+
         for root, subdirs, files, in os.walk(self.absolute_fpath):
-            subdirs[:] = [d for d in subdirs if d not in exclude]            
+            subdirs[:] = [d for d in subdirs if d not in exclude]
 
             for name in files:
                 ext = splitext(name)[1]
@@ -52,17 +52,17 @@ class Runner:
                 fp = os.path.join(root, name)
                 replace = self.absolute_fpath + os.sep
                 fp = fp.replace(replace, '')
-                self.features_list.append(fp) 
+                self.features_list.append(fp)
             for name in subdirs:
                 self.features_list.append(name)
 
-        
+
         for feature in self.features_list:
             i = self.features_list.index(feature) + 1
             print str(c.get("[" + str(i) + "]")) + " " + feature
 
         self.selected = prompt('>>> Choose feature/features to run or press enter for entire suite')
-        
+
         # when no features dir or feature is provided, run all in features path
         if (self.selected.isdigit() == False):
             self.path = fpath
@@ -82,20 +82,20 @@ class Runner:
             selected_list = range(int(range_split[0]), int(range_split[1]))
         else:
             selected_list = self.selected.split(' ')
-        
+
         for selected in selected_list:
             selected = str(selected);
 
             if selected.isdigit():
                 findex = int(selected.strip()) -1
-            
+
             if selected.isdigit() == False:
                 run_feature = ''
             else:
                 run_feature = self.features_list[findex]
 
             line = prompt('>>> Enter line number, or press enter')
-            
+
             if line:
                     run_feature = run_feature + ':' + line
 
@@ -111,3 +111,7 @@ class Runner:
 
             local(behat_command)
 
+
+class Runner:
+    def __init__(self):
+        pass

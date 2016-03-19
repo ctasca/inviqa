@@ -7,7 +7,7 @@ from os.path import splitext
 
 c = Colors()
 
-class Runner:
+class CliTool:
     def __init__(self):
         self.profile = False
         self.path = False
