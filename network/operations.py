@@ -1,6 +1,6 @@
 from fabric.operations import local
 from fabric.api import *
-from inviqa.project.Environment import *
+from inviqa.project.environment import *
 from inviqa.fabric.cli import confirm as inviqa_confirm
 from inviqa.fabric.cli import prompt, puts
 
@@ -31,3 +31,11 @@ class RemoteShredder:
                         frm = inviqa_confirm("*** Do you want to delete file.txt?", False)
                         if frm:
                             sudo('rm file.txt')
+
+class ProxyReverse:
+    def __init__(self):
+        pass
+
+    def reverse(self):
+        proxy = prompt('>>> Enter host (without http|https)')
+        local('proxyreverse 8080,8443 %s' % (proxy))

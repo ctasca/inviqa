@@ -1,7 +1,7 @@
 from fabric.api import *
 from inviqa.fabric.cli import puts
 
-class Environment:
+class Servers:
     def __init__(self, www_dir):
         self.www_dir = www_dir
         self.hosts = {}
