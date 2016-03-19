@@ -37,8 +37,8 @@ class Servers:
 
 
 class RemoteTaskNotifier:
-    def __init__(self):
-        self.notify()
+    def __init__(self, environment):
+        self.notify(environment)
 
-    def notify(self):
-        puts('*** Running task on %s' % env.hosts[0])
+    def notify(self, environment):
+        puts('!! Running task on %s.\nWorking dir is %s' % (env.hosts[0], environment.www_home_dir()))

@@ -16,7 +16,7 @@ class RemoteShredder:
         self.env = environment
 
     def shred(self):
-        RemoteTaskNotifier()
+        RemoteTaskNotifier(self.environment)
         remotefile_location = prompt('>>> Enter file location:')
         with cd(remotefile_location):
             run('ls')
