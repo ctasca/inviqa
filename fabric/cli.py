@@ -6,7 +6,7 @@ from . import Colors
 c = Colors.Colors();
 
 def confirm(question, default=True):
-        return fab_confirm(c.get(question), default)
+    return fab_confirm(c.get(question), default)
 
 def prompt(text, key=None, default='', validate=None):
     return fab_prompt(c.get(text), key, default, validate)
