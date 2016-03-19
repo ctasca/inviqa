@@ -1,5 +1,5 @@
 from fabric.api import *
-from inviqa.fabric.puts import puts
+from inviqa.fabric.cli import puts
 
 class Environment:
     def __init__(self, www_dir):

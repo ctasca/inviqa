@@ -1,6 +1,5 @@
 from fabric.api import local
-from inviqa.fabric.puts import puts
-from inviqa.fabric.prompt import prompt
+from inviqa.fabric.cli import prompt, puts
 from inviqa.fabric.Colors import Colors
 import re,os
 from os.path import splitext

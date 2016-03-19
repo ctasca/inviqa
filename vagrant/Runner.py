@@ -1,5 +1,5 @@
 from fabric.api import local
-from inviqa.fabric.puts import puts
+from inviqa.fabric.cli import puts
 import re,os
 
 class Runner:
