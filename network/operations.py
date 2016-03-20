@@ -56,7 +56,7 @@ class Downloader:
 
     def download(self):
         puts('*** Downloading from %s' % (self.remote_path))
-        puts('*** Downloading to %s' % (self.local_path))
+        puts('*** To %s' % (self.local_path))
         download = inviqa_confirm('>>> Continue?')
         with cd(self.remote_cd_path):
             if download:
@@ -76,8 +76,8 @@ class Uploader:
             self.remote_cd_path = os.sep.join(remote_path_segments)
 
     def upload(self):
-        puts('*** Uploading from %s' % (self.local_path))
-        puts('*** Uploading to %s' % (self.remote_path))
+        puts('*** Uploading %s' % (self.local_path))
+        puts('*** To %s' % (self.remote_path))
         upload = inviqa_confirm('>>> Continue?')
         with cd(self.remote_cd_path):
             if upload:
