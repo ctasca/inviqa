@@ -1,8 +1,10 @@
 from fabric.operations import local
 from fabric.api import *
 from inviqa.project.environment import *
+from inviqa.fabric.Colors import Colors
 from inviqa.fabric.cli import confirm as inviqa_confirm
 from inviqa.fabric.cli import prompt, puts
+
 
 class Frontdoor2:
     def __init__(self, user):
@@ -39,3 +41,45 @@ class ProxyReverse:
     def reverse(self):
         proxy = prompt('>>> Enter host (without http|https)')
         local('proxyreverse 8080,8443 %s' % (proxy))
+
+class Downloader:
+    def __init__(self, remote_path, local_path):
+        self.remote_path = remote_path
+        self.remote_cd_path = remote_path
+        self.local_path = local_path
+
+        remote_path_segments = self.remote_cd_path.split(os.sep)
+        last = remote_path_segments.pop()
+
+        if "." in last:
+            self.remote_cd_path = os.sep.join(remote_path_segments)
+
+    def download(self):
+        puts('*** Downloading from %s' % (self.remote_path))
+        puts('*** Downloading to %s' % (self.local_path))
+        download = inviqa_confirm('>>> Continue?')
+        with cd(self.remote_cd_path):
+            if download:
+                get(self.remote_path, self.local_path)
+
+
+class Uploader:
+    def __init__(self, local_path, remote_path):
+        self.remote_cd_path = remote_path
+        self.local_path = local_path
+        self.remote_path = remote_path
+
+        remote_path_segments = self.remote_cd_path.split(os.sep)
+        last = remote_path_segments.pop()
+
+        if "." in last:
+            self.remote_cd_path = os.sep.join(remote_path_segments)
+
+    def upload(self):
+        puts('*** Uploading from %s' % (self.local_path))
+        puts('*** Uploading to %s' % (self.remote_path))
+        upload = inviqa_confirm('>>> Continue?')
+        with cd(self.remote_cd_path):
+            if upload:
+                put(self.local_path, self.remote_path)
+

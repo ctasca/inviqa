@@ -1,1 +1,1 @@
-__all__ = ["Frontdoor2", "RemoteShredder", "ProxyReverse"]
+__all__ = ["Frontdoor2", "RemoteShredder", "ProxyReverse", "Downloader"]
