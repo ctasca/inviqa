@@ -1,1 +1,1 @@
-__all__ = ["Servers", "RemoteTaskNotifier"]
+__all__ = ["Servers", "RemoteTaskNotifier", "RemoteDirectoryChooser"]
