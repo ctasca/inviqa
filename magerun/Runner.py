@@ -18,5 +18,7 @@ class Runner:
         local(self.path + "n98-magerun.phar sys:set:run")
     def list(self):
         local(self.path + "n98-magerun.phar list")
+    def module_create(self, namespace, module, codepool):
+        local((self.path + "n98-magerun.phar dev:module:create  %s %s %s") % (namespace, module, codepool))
     def command(self, command):
         local(self.path + ("n98-magerun.phar %s" % command))
