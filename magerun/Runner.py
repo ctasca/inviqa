@@ -1,4 +1,4 @@
-from fabric.api import local, run
+from fabric.api import local, run, sudo
 from inviqa.fabric.cli import puts
 import re,os
 
@@ -21,8 +21,10 @@ class Runner:
         local(self.path + "n98-magerun.phar list")
     def module_create(self, namespace, module, codepool):
         local((self.path + "n98-magerun.phar dev:module:create  %s %s %s") % (namespace, module, codepool))
-    def command(self, command, use_run = False):
+    def command(self, command, use_run = False, use_sudo = False):
         if (use_run == True):
             run(self.rpath + ("n98-magerun.phar %s" % command))
+        elif (use_sudo == True):
+             sudo(self.rpath + ("n98-magerun.phar %s" % command))
         else:
             local(self.path + ("n98-magerun.phar %s" % command))
