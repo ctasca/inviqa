@@ -1,10 +1,11 @@
-from fabric.api import local
+from fabric.api import local, run
 from inviqa.fabric.cli import puts
 import re,os
 
 class Runner:
-    def __init__(self, path):
+    def __init__(self, path, rpath):
         self.path = path + os.sep
+        self.rpath = rpath + os.sep
     def template_hints(self):
         local(self.path +  "n98-magerun.phar dev:template-hints")
     def clean_cache(self):
@@ -20,5 +21,8 @@ class Runner:
         local(self.path + "n98-magerun.phar list")
     def module_create(self, namespace, module, codepool):
         local((self.path + "n98-magerun.phar dev:module:create  %s %s %s") % (namespace, module, codepool))
-    def command(self, command):
-        local(self.path + ("n98-magerun.phar %s" % command))
+    def command(self, command, use_run = False):
+        if (use_run == True):
+            run(self.rpath + ("n98-magerun.phar %s" % command))
+        else:
+            local(self.path + ("n98-magerun.phar %s" % command))
