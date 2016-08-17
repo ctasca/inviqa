@@ -16,7 +16,7 @@ class Runner:
     def admin_create(self):
         lcoal(self.path + "n98-magerun.phar admin:user:create")
     def setup_run(self):
-        local(self.path + "n98-magerun.phar sys:set:run")
+        local(self.path + "n98-magerun.phar sys:setup:run")
     def list(self):
         local(self.path + "n98-magerun.phar list")
     def module_create(self, namespace, module, codepool):

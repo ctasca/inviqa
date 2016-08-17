@@ -12,6 +12,7 @@ class Servers:
         self.www_public = www_public
         self.hosts = {}
         self.host_dictionary = {}
+        self.default_vcl_dir = "/etc/varnish"
 
     def boostrap(self):
         env.use_ssh_config = True
@@ -44,6 +45,9 @@ class Servers:
     def www_public_dir(self):
         current_host = self.current_host()
         return self.www_public % current_host
+
+    def varnish_default_vcl_dir(self):
+        return self.default_vcl_dir
 
     def remote_task_notifier(self):
         puts('*** Running task on %s' % env.hosts[0])
